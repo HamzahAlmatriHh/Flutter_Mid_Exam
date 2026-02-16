@@ -397,7 +397,12 @@ function showToast(m, t) {
     if (!c) return;
     const x = c.getContext('2d');
     let w, h, s;
-    function i() { w = c.width = window.innerWidth; h = c.height = window.innerHeight; s = Array(100).fill().map(() => ({ x: Math.random() * w, y: Math.random() * h, r: Math.random() * 1.5 })); }
+    function i() {
+        w = c.width = window.innerWidth;
+        h = c.height = window.innerHeight;
+        const count = w < 600 ? 30 : 100; // Reduce stars on mobile
+        s = Array(count).fill().map(() => ({ x: Math.random() * w, y: Math.random() * h, r: Math.random() * 1.5 }));
+    }
     function d() { x.clearRect(0, 0, w, h); s.forEach(p => { x.beginPath(); x.arc(p.x, p.y, p.r, 0, 7); x.fillStyle = '#fff'; x.fill(); }); requestAnimationFrame(d); }
     window.onresize = i; i(); d();
 })();
