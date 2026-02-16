@@ -46,6 +46,9 @@ body {
     opacity: 0.18;
     pointer-events: none;
     animation: blobFloat 12s ease-in-out infinite alternate;
+    will-change: transform;
+    backface-visibility: hidden;
+    transform: translateZ(0);
 }
 
 .blob1 {
@@ -719,10 +722,23 @@ body {
         width: 100%;
         border-radius: 16px;
         min-height: 90vh;
+        backdrop-filter: none;
+        /* Disable blur */
+        background-color: #0f1628;
+        /* Solid background */
+        animation: none;
+        /* Disable slide up animation */
     }
 
-    .modal-body {
-        padding: 20px;
+    .modal {
+        backdrop-filter: none;
+        /* Disable modal bg blur */
+        background-color: rgba(10, 14, 26, 0.95);
+    }
+
+    .blob {
+        display: none;
+        /* Hide blobs completely on mobile */
     }
 
     .lecture-grid {
@@ -731,6 +747,8 @@ body {
 
     .question-card {
         padding: 24px 20px;
+        animation: none;
+        /* Disable card animation */
     }
 
     .q-text {
